@@ -42,3 +42,16 @@ def get_phone
 
   "Телефон: +7 #{phone[0, 3]} #{phone[3, 3]}-#{phone[6, 2]}-#{phone[8, 2]}"
 end
+
+
+def get_email
+
+  begin
+    puts "Введите адрес электронной почты:"
+    print "Email: "
+    email = STDIN.gets.chomp.dowmcase
+
+  end until email =~ /\A(?=\A.{,100}\z)[\w\.\-]+@[a-z\d\-]+\.[a-z]{2,}\z/
+
+  "Email: #{email}"
+end
