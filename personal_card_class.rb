@@ -1,9 +1,5 @@
 class PersonalCard
 
-  def self.create_css_doc
-  end  
-
-
   def initialize
     @image       = get_image
     @name        = get_name
@@ -90,12 +86,11 @@ class PersonalCard
 
   def create_body
     tab     = " "*2
-
     img_tag = tab*2 + "<img src = \"#{@image}\" alt = \"личное фото\">\n"
     p_tags  = [@name, @description, @phone, @email]
     p_tags  = p_tags.map { |el| tab*2 + "<p>#{el}</p>\n" }.join
 
-    tab + "#{tab}<div>\n#{img_tag + p_tags}\n#{tab}</div>\n"
+    tab + "#{tab}<div class = \"card\">\n#{img_tag + p_tags}\n#{tab}</div>\n"
   end
 end
 
