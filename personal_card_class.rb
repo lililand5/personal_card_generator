@@ -67,19 +67,26 @@ class PersonalCard
   end
 
 
-  def create_html
+  def create_html_doc
     folder_path = File.dirname(__FILE__)
     file_path = folder_path + "/personal_cards/PCard_#{@name}.html"
     file = File.new(file_path, "w:UTF-8")
   
-    
+    file.puts("<!DOCTYPE HTML>\n")
+    file.puts("<html>\n<head>\n  <meta charset=\"utf-8\" lang=\"ru\">\n</head>\n\n")
+    file.puts("#{create_body}</html>")
+    file.close
+  end
+
+
+  def create_body
     img_tag = "  <img src = \"#{@image}\" alt = \"личное фото\">\n"
     p_tags = [@name, @description, @phone, @email]
     p_tags = p_tags.map { |el| "  <p>#{el}</p>\n" }.join
 
-
-    file.puts("<html>\n<body>\n#{img_tag + p_tags}\n</body>\n</html>")
-    file.close
-
+    "#<body>\n#{img_tag + p_tags}\n</body>\n"
   end
 end
+
+
+
