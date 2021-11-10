@@ -1,5 +1,9 @@
 class PersonalCard
 
+  def self.create_css_doc
+  end  
+
+
   def initialize
     @image       = get_image
     @name        = get_name
@@ -73,18 +77,25 @@ class PersonalCard
     file = File.new(file_path, "w:UTF-8")
   
     file.puts("<!DOCTYPE HTML>\n")
-    file.puts("<html>\n<head>\n  <meta charset=\"utf-8\" lang=\"ru\">\n</head>\n\n")
-    file.puts("#{create_body}</html>")
+    file.puts("<html>\n")
+    file.puts("<head>\n  <meta charset=\"utf-8\" lang=\"ru\">\n" + 
+              "  <link href=\"#{folder_path + "/personal_cards/style.css"}\" " + 
+              "rel=\"stylesheet\" type=\"text/css\"></head>\n\n")
+
+    file.puts("<body>\n#{create_body}</body>\n")
+    file.puts("</html>")
     file.close
   end
 
 
   def create_body
-    img_tag = "  <img src = \"#{@image}\" alt = \"личное фото\">\n"
-    p_tags = [@name, @description, @phone, @email]
-    p_tags = p_tags.map { |el| "  <p>#{el}</p>\n" }.join
+    tab     = " "*2
 
-    "#<body>\n#{img_tag + p_tags}\n</body>\n"
+    img_tag = tab*2 + "<img src = \"#{@image}\" alt = \"личное фото\">\n"
+    p_tags  = [@name, @description, @phone, @email]
+    p_tags  = p_tags.map { |el| tab*2 + "<p>#{el}</p>\n" }.join
+
+    tab + "#{tab}<div>\n#{img_tag + p_tags}\n#{tab}</div>\n"
   end
 end
 
