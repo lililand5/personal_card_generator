@@ -49,7 +49,7 @@ def get_email
   begin
     puts "Введите адрес электронной почты:"
     print "Email: "
-    email = STDIN.gets.chomp.dowmcase
+    email = STDIN.gets.chomp.downcase
 
   end until email =~ /\A(?=\A.{,100}\z)[\w\.\-]+@[a-z\d\-]+\.[a-z]{2,}\z/
 
